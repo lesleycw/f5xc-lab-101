@@ -2,8 +2,8 @@ Lab 1: Protecting a Public Endpoint
 ===================================
 
 During this lab you will be introduced to creating a WAF policy in F5 Distributed Cloud
-and using that policy to protect your lab resource that is a "Public Endpoint"
-in Azure (webserver with an EIP).
+and using that policy to protect your lab resource that is a **Public Endpoint**
+in Azure (webserver with an PIP).
 
 Task 1. Create WAF Policy
 -------------------------
@@ -21,18 +21,18 @@ Exercise 1: Create WAF Policy
 
 We will create a blocking WAF policy.
 
-#. Start in F5 Distributed Cloud Console and switch to the "Web App & API Protection" context. 
+#. Start in F5 Distributed Cloud Console and switch to the **Web App & API Protection** context. 
 
    It can be access either from the main Home page... 
   
-   ...or via the "Select Service" menu on the top left corner of any other page:
+   ... or via the **Select Service** menu on the top left corner of any other page:
 
    |select-service|
    
-#. Ensure you are in the proper namespace (an adjective-animal combination) and not the default namespace. It is ok if you do not see your namespace as you will be defaulted to it as seen in your URI path as in the Introduction section.
+#. Ensure you are in the proper namespace (an adjective-animal combination) and not the default namespace (if shown). It is ok if you do not see your namespace as you will be defaulted to it as seen in your URI path as in the Introduction section.
 
    |namespace-selection|
-#. Navigate the menu to go to "Manage"->"App Firewall". Click on *Add App Firewall*.
+#. Navigate the menu to go to **Manage**-> **App Firewall**. Click on **Add App Firewall**.
 
 
 #. Enter the following variables:
@@ -49,25 +49,13 @@ We will create a blocking WAF policy.
 
    .. image:: _static/blocking-app-firewall-policy.png
 
-#. Click the *Save and Exit* button to create the policy
-
-Video Walkthrough 
-^^^^^^^^^^^^^^^^^
-Optional Video you can watch if you get stuck
-
-Note that each of the videos will start at a specific timestamp.  
-
-The entire video is 10 minutes total from start to finish.
-
-.. raw:: html
-   
-   <iframe width="560" height="315" src="https://www.youtube.com/embed/s-BHH0Qayfc?start=41" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+#. Click the **Save and Exit** button to create the policy
 
 Task 2. Create Origin Pools
 ---------------------------
 
 Before we create an HTTP load balancer to expose our services on the internet, 
-we'll define "Origin Pools" for our application's services.
+we'll define **Origin Pools** for our application's services.
 
 This initial Origin Pool will use the Public DNS record of our target webserver 
 to locate the IP address of the Origin Pool members.  This is an example of using 
@@ -76,11 +64,11 @@ look at routing traffic via AppMesh to our services.
 
 Exercise 1: Create Public Origin Pool
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-We will first create an Origin Pool that refers to the "Public Endpoint" site in our lab environment.
+We will first create an Origin Pool that refers to the **Public Endpoint** site in our lab environment.
 
-#. Start in F5 Distributed Cloud Console and switch to the "Web App & API Protection" context. [You should already be here from previous task]
+#. Start in F5 Distributed Cloud Console and switch to the **Web App & API Protection** context. [You should already be here from previous task]
 
-#. Navigate the menu to go to "Manage"->"Load Balancers"->"Origin Pools". Click on *Add Origin Pool*.
+#. Navigate the menu to go to **Manage** -> **Load Balancers** -> **Origin Pools**. Click on **Add Origin Pool**.
 
 #. Enter the following variables:
 
@@ -90,7 +78,7 @@ We will first create an Origin Pool that refers to the "Public Endpoint" site in
    Name                              public
    ================================= =====
 
-#. Click on "Add Item" under the section "Origin Servers"
+#. Click on **Add Item** under the section **Origin Servers**
 
    Enter the following variables: 
 
@@ -103,9 +91,9 @@ We will first create an Origin Pool that refers to the "Public Endpoint" site in
     
    |op-pool-basic|
 
-   Click on "Add Item" to return to the previous screen.
+   Click on **Add Item** to return to the previous screen.
 
-#. Below the "Origin Servers" section fill in the Port information
+#. Below the **Origin Servers** section fill in the Port information
 
    ================================= =====
    Variable                          Value
@@ -114,9 +102,9 @@ We will first create an Origin Pool that refers to the "Public Endpoint" site in
    ================================= =====
 
 
-#. In *Health Check(s)* section, click the *Add item* button.
+#. In **Health Check(s)** section, click the **Add Item** button.
 
-#. Click the *Health Check object* dropdown list. Click the *Create new healthcheck* button.
+#. Click the **Health Check object** dropdown list. Click the **Create new healthcheck** button.
 
 #. Enter the following variables:
 
@@ -126,7 +114,7 @@ We will first create an Origin Pool that refers to the "Public Endpoint" site in
    name      http
    ========= =====
 
-#. Click the *Configure* button under "HTTP Health Check" and enter the following variables ("/" is the default):
+#. Click the **Configure** button under **HTTP Health Check** and enter the following variables ("/" is the default):
 
    ========= =====
    Variable  Value
@@ -134,14 +122,14 @@ We will first create an Origin Pool that refers to the "Public Endpoint" site in
    path      /
    ========= =====
 
-#. Click *Apply* to exit the "Health Check HTTP Parameters" dialogue.
-#. Click *Continue* to return to the "Origin Pool" configuration.
-#. Click the *Save and Exit* button to create the Origin Pool.
+#. Click **Apply** to exit the **Health Check HTTP Parameters** dialogue.
+#. Click **Continue** to return to the **Origin Pool** configuration.
+#. Click the **Save and Exit** button to create the Origin Pool.
 
 Task 3. Creating HTTP Load Balancer on F5 Distributed Cloud Regional Edge
 -------------------------------------------------------------------------
 
-In this exercise we will be creating a "Global VIP" that will exist on the F5 Distributed Cloud Global Network.
+In this exercise we will be creating a **Global VIP** that will exist on the F5 Distributed Cloud Global Network.
 
 It will protect a public resource that exists in the lab's Azure Lab Environment.
 
@@ -150,9 +138,9 @@ It will protect a public resource that exists in the lab's Azure Lab Environment
 Exercise 1: HTTP Load Balancer Configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-#. Start in F5 Distributed Cloud Console and switch to the "Web App & API Protection" context. [You should already be here from previous task]
+#. Start in F5 Distributed Cloud Console and switch to the **Web App & API Protection** context. [You should already be here from previous task]
 
-#. Navigate the menu to go to "Manage"->"Load Balancers" -> "HTTP Load Balancers" and click on "Add HTTP Load Balancer".
+#. Navigate the menu to go to **Manage** -> **Load Balancers** -> **HTTP Load Balancers** and click on **Add HTTP Load Balancer**.
 
 #. Enter the following variables:
 
@@ -169,22 +157,22 @@ Exercise 1: HTTP Load Balancer Configuration
 
 Exercise 2: Configure Default Origin Server
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-We'll next configure the "Default Origin Servers". 
+We'll next configure the **Default Origin Servers**. 
     
-#. Click on the *Add Items* link under the *Default Origin Servers* section.
+#. Click on the **Add Items** link under the **Default Origin Servers** section.
 
-#. The "Select Origin Pool Method" will be set to "Origin Pool". Under the "Origin Pool" dropdown menu select the "public" pool you created earlier.
+#. The **Select Origin Pool Method** will be set to **Origin Pool**. Under the **Origin Pool** dropdown menu select the **public** pool you created earlier.
 
    .. image:: _static/lb-pool-public.png
  
-#. Click the *Add Item* button to exit the "Origin Pools" dialogue.
+#. Click the **Add Item** button to exit the **Origin Pools** dialogue.
 
-#. Notice that in the "Advanced Configuration" section *Advertise On Internet* has been selected by default.
+#. Notice that in the **Advanced Configuration** section **Advertise On Internet** has been selected by default.
 
 Exercise 3: Configure WAF Policy
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-#. Under the *Security Configuration* section 
+#. Under the **Security Configuration** section 
 
 #. Choose the following options:
 
@@ -195,13 +183,13 @@ Exercise 3: Configure WAF Policy
    App Firewall                                  [NAMESPACE]/blocking-app-firewall
    ============================================= =====================
 
-#. Click "*Save and Exit* to create the HTTP Load Balancer.
+#. Click **Save and Exit** to create the HTTP Load Balancer.
 
 Once the HTTP Load Balancer has been deployed, you should now be able to go to the DNS name that you entered 
 previously in a web browser.  The FQDN we used in our example is http://stable-sheep.lab-mcn.f5demos.com.  
 Your FQDN should follow the format of [unique name].[supplied domain name for your tenant].
 
-.. note:: If you are having challenges connecting to the "f5lab.net" name you can also try connecting to the "ves.io" name.
+.. note:: If you are having challenges connecting to the "f5demos.com" name you can also try connecting to the "ves.io" name.
 
 Exercise 4: Verify Configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -224,11 +212,11 @@ You should see a block page.
 Exercise 5: Performance and Security 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-#. Start in F5 Distributed Cloud Console and switch to the "Web App & API Protection" context. [You should already be here from previous lab]
+#. Start in F5 Distributed Cloud Console and switch to the **Web App & API Protection** context. [You should already be here from previous lab]
 
-   We can view details of successful requests and blocks by navigating to "Apps & APIs"
+   We can view details of successful requests and blocks by navigating to **Apps & APIs**
 
-#. Click on "Apps & APIs"->"Performance" and click on your "global" Load Balancer (bottom right)
+#. Click on **Apps & APIs** -> **Performance** and click on your **global** Load Balancer (bottom right)
 
    .. image:: _static/performance-overview.png
       :width: 50%
@@ -238,15 +226,15 @@ Exercise 5: Performance and Security
    .. image:: _static/screenshot-global-vip-performance-dashboard.png
       :width: 50%
 
-#. Click on "Requests" in the upper page navigation
+#. Click on **Requests** in the upper page navigation
 
    You should be able to view logs for individual requests.
 
    .. image:: _static/screenshot-global-vip-public-requests.png
       :width: 50%
 
-#. Click on "Apps & APIs"->"Security" and click on your "global" Load Balancer (bottom right)
-#. Click on "Security Events"
+#. Click on **Apps & APIs** -> **Security** and click on your **global** Load Balancer (bottom right)
+#. Click on **Security Events**
    You will be able to see details of the security events.
 
    .. image:: _static/screenshot-global-vip-public-security-events.png

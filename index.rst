@@ -1,7 +1,7 @@
 F5 Distributed Cloud 101 - WAF/WAAP Deployment Models 
 =====================================================
 
-`Last updated: 2022-11-14 11:30 PM PST
+**Last updated: 2022-11-14 11:30 PM PST**
 
 F5 Distributed Cloud's SaaS Web Application Firewall (WAF) can help you mitigate application threats
 with an updated WAF engine that inherits the shared  capabilities of F5 BIG-IP Advanced WAF,
