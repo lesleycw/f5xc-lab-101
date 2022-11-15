@@ -1,7 +1,7 @@
 (Optional) Lab 4: Fine Tuning a WAF Policy
 ===============================
 
-This lab is also covered in the xC WAF 102 course.
+This lab is also covered in the F5 Distributed Cloud WAF 102 course.
  
 In this next lab we will learn how to customize a WAF policy.
 
@@ -27,7 +27,7 @@ We can use the reported support ID to disable specific signatures.  Copy the val
 Exercise 1: Generate Cross Site Scripting (XSS)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-#. Send the following request to your `[NAMESPACE].lab-sec.f5demos.com` site
+#. Send the following request to your `[NAMESPACE].lab-mcn.f5demos.com` site
 
    ``/headers/?username=<script>window.open(%27hello%20world%27);</script>``
 
@@ -70,7 +70,7 @@ Exercise 2: Creating WAF Exclusion Rule
    .. image:: _static/waf-exclusion-rules-ids.png
       :width: 75%
 	  
-#. Search for one of the IDs at: https://clouddocs.f5.com/cloud-services/latest/f5-cloud-services-Essential.App.Protect-Details.html
+#. Search for one of the IDs at: https://docs.cloud.f5.com/docs/reference/attack-signatures
    For example searching for "200000091" should return a "XSS script tag end (Headers)" signature.
 #. Click on "Apply" you will now be taken into the HTTP Load Balancer configuration and you should see under "WAF Exclusion Rules" it should show as "Configured"
 #. Scroll to the bottom of the page and click on "Save and Exit"
@@ -100,10 +100,3 @@ the requests log.
 #. Observe that this request is blocked.  F5 Distributed Cloud WAF can exclude signatures by both signature ID and path; and these exclusions are tied to a specific HTTP Load Balancer
 
 Congratulations you have completed the lab!
-
-Video Walkthrough 
-^^^^^^^^^^^^^^^^^
-Optional Video you can watch if you get stuck
-
-.. raw:: html
-   <iframe width="560" height="315" src="https://www.youtube.com/embed/s-BHH0Qayfc?start=523" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

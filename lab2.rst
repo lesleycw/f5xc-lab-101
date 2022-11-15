@@ -1,4 +1,4 @@
-Lab 2: Deploying an AWS VPC Site
+Lab 2: Deploying an Public Cloud Site
 ================================
 
 In the previous lab you learned how to protect a resource that is already on the Public Internet.
@@ -6,7 +6,7 @@ In the previous lab you learned how to protect a resource that is already on the
 In this next lab we will look at two additional topologies of how you can use a "AppMesh" node
 to secure traffic that is going to an endpoint that is not directly exposed to the Internet.
 
-F5 Distributed Cloud AWS VPC Site
+F5 Distributed Cloud Azure VPC Site
 ---------------------------------
 
 In additional to using the F5 Distributed Cloud WAF from an F5 Regional Edge / PoP location
@@ -17,7 +17,7 @@ within the local network.
 When we deploy AppMesh outside of a Regional Edge we refer to these locations as a
 "Customer Edge".  In the following exercise we will review the process to
 deploy a Customer Edge.  In our existing lab environment we have already deployed 
-a shared F5 Distributed Cloud AWS VPC Site.
+a shared F5 Distributed Cloud Azure vNet Site.
 
 Once an AppMesh node has been deployed as a Customer Edge it helps provide two
 additional topologies for F5 Distributed Cloud WAF protection.
@@ -26,31 +26,31 @@ additional topologies for F5 Distributed Cloud WAF protection.
 
 #. Allow F5 Distributed Cloud to provide WAF protection for "internal" and/or "local" systems
 
-Exercise 1: Introduction to F5 Distributed Cloud AWS VPC Site
+Exercise 1: Introduction to F5 Distributed Cloud Azure vNet Site
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-#. Start in F5 Distributed Cloud Console and find the "AWS VPC Sites" menu item. 
+#. Start in F5 Distributed Cloud Console and find the "Azure vNet Sites" menu item. 
 
    From the top left "Select service" and look under "All Services"->"Cloud and Edge Sites"
-#. Go to Manage > Site Management > AWS VPC Sites
+#. Go to Manage > Site Management > Azure vNet Sites
 
    .. image:: _static/menu-cloud-edge-sites.png
       :width: 75% 
 
-#. Find the "student-awsnet" site
+#. Find the "student-azurenet" site
 
-   In this lab environment we have already deployed a shared AWS VPC Site that we will 
-   use in this lab.  Click on the "student-awsnet"
+   In this lab environment we have already deployed a shared Azure vNet Site that we will 
+   use in this lab.  Click on the "student-azurenet"
 
    You will be able to observe several metrics about the health of the site.
 
    .. image:: _static/student-awsnet-site-metrics.png
 
    
-#. Browse back to "AWS VPC Sites" 
+#. Browse back to "Azure vNet Sites" 
    
-   In this deployment an AppMesh node has been deployed into an existing VPC in our
-   shared AWS lab environment.
+   In this deployment an AppMesh node has been deployed into an existing vNet in our
+   shared Azure lab environment.
 
    AppMesh nodes can also be deployed into VMWare and KVM environments as well through
    a site registration process. 
@@ -58,13 +58,13 @@ Exercise 1: Introduction to F5 Distributed Cloud AWS VPC Site
 Exercise 2 (Optional): F5 F5 Distributed Cloud Simulator
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-During this lab we will not deploy a new AWS VPC Site.  If you would like to learn 
-more about deploying an AWS VPC Site via F5 Distributed Cloud you may want to try using the 
+During this lab we will not deploy a new Azure vNet Site.  If you would like to learn 
+more about deploying a Public Cloud Site via F5 Distributed Cloud you may want to try using the 
 following F5 F5 Distributed Cloud Simulator:
 
 - https://simulator.f5.com/s/cloud2cloud_via_sites_brownfield
 
-You can emulate the steps that were used to create the F5 Distributed Cloud VPC Site in the lab environment by starting
+You can emulate the steps that were used to create the F5 Distributed Cloud Site in the lab environment by starting
 with the "3. Connect AWS VPC Site" https://simulator.f5.com/s/cloud2cloud_via_sites_brownfield/nav/aws/005/0
 
 Clicking on the "Next" button in the top right will allow you to see similar steps that were used to create the site.

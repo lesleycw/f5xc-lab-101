@@ -3,7 +3,7 @@ Lab 1: Protecting a Public Endpoint
 
 During this lab you will be introduced to creating a WAF policy in F5 Distributed Cloud
 and using that policy to protect your lab resource that is a "Public Endpoint"
-in AWS (webserver with an EIP).
+in Azure (webserver with an EIP).
 
 Task 1. Create WAF Policy
 -------------------------
@@ -98,7 +98,7 @@ We will first create an Origin Pool that refers to the "Public Endpoint" site in
    Variable                          Value
    ================================= =====
    Select Type of Origin Server      Public DNS Name of Origin Server [default]
-   DNS Name                          public.lab.f5demos.com
+   DNS Name                          public.mcn.f5lab.net
    ================================= =====
     
    |op-pool-basic|
@@ -143,7 +143,7 @@ Task 3. Creating HTTP Load Balancer on F5 Distributed Cloud Regional Edge
 
 In this exercise we will be creating a "Global VIP" that will exist on the F5 Distributed Cloud Global Network.
 
-It will protect a public resource that exists in the lab's AWS Lab Environment.
+It will protect a public resource that exists in the lab's Azure Lab Environment.
 
 .. image:: _static/testdrive-volterra-waf-global-vip.png
 
@@ -160,7 +160,7 @@ Exercise 1: HTTP Load Balancer Configuration
    Variable                          Value
    ================================= =====
    Name                              global
-   Domains                           [YOUR-NAMESPACE].lab-sec.f5demos.com
+   Domains                           [YOUR-NAMESPACE].lab-mcn.f5demos.com
    Select type of Load Balancer      HTTP
    Automatically Manage DNS Records  Yes/Check 
    ================================= =====
@@ -198,10 +198,10 @@ Exercise 3: Configure WAF Policy
 #. Click "*Save and Exit* to create the HTTP Load Balancer.
 
 Once the HTTP Load Balancer has been deployed, you should now be able to go to the DNS name that you entered 
-previously in a web browser.  The FQDN we used in our example is http://stable-sheep.lab-sec.f5demos.com.  
+previously in a web browser.  The FQDN we used in our example is http://stable-sheep.lab-mcn.f5demos.com.  
 Your FQDN should follow the format of [unique name].[supplied domain name for your tenant].
 
-.. note:: If you are having challenges connecting to the "f5demos.com" name you can also try connecting to the "ves.io" name.
+.. note:: If you are having challenges connecting to the "f5lab.net" name you can also try connecting to the "ves.io" name.
 
 Exercise 4: Verify Configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -213,7 +213,7 @@ The public demo app should look like the following:
 
 In this topology we are sending traffic to an AnyCast IP that is hosted in F5 Distributed Cloud's Regional Edge.
 
-We then connect to the AWS resource via it's Public IP address.  
+We then connect to the Azure resource via it's Public IP address.  
 
 Try adding the following to the URL "/?cat%20/etc/passwd".
 
@@ -256,14 +256,7 @@ Exercise 5: Performance and Security
    .. image:: _static/screenshot-global-vip-public-security-events-details.png
       :width: 50%
 
-Next we will demonstrate how we can securely connect to your private AWS resources via a AppMesh node.
-
-Video Walkthrough 
-^^^^^^^^^^^^^^^^^
-Optional Video you can watch if you get stuck
-
-.. raw:: html
-   <iframe width="560" height="315" src="https://www.youtube.com/embed/s-BHH0Qayfc?start=108" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+Next we will demonstrate how we can securely connect to your private Azure resources via a AppMesh node.
 
 .. |app-context| image:: _static/app-context.png
    :width: 75%

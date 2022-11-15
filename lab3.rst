@@ -36,9 +36,9 @@ We will first create an Origin Pool that refers to the "Private Endpoint" site i
    ================================= =====
    Variable                          Value
    ================================= =====
-   Select Type of Origin Server      DNS Name of Origin Server on given Sites
-   DNS Name                          private.lab.f5demos.internal
-   Site                              student-awsnet
+   Select Type of Origin Server      IP Address of Origin Server on given Sites
+   DNS Name                          10.10.1.6
+   Site                              student-azurenet
    ================================= =====
     
    |op-pool-basic|
@@ -107,7 +107,7 @@ Exercise 1: HTTP Load Balancer Configuration
 #. Click "*Save and Exit* to update the HTTP Load Balancer.
 
 You should now be able to go to the DNS name that you entered 
-previously in a web browser.  The FQDN we used in our example is http://stable-sheep.lab-sec.f5demos.com/.  
+previously in a web browser.  The FQDN we used in our example is http://stable-sheep.lab-mcn.f5demos.com/.  
 
 Exercise 2: Verify Configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -119,11 +119,11 @@ The private demo app should look like the following:
 
 In this topology we are sending traffic to an AnyCast IP that is hosted in F5 Distributed Cloud's Regional Edge.
 
-We then connect to the AWS resource via the AppMesh node that is deployed in the same VPC as the "Private Endpoint".  
+We then connect to the Azure resource via the AppMesh node that is deployed in the same vNet as the "Private Endpoint".  
 The AppMesh is only being used for network connectivity to the Private Endpoint; enforcement of the WAF policy is still
 being applied in the Regional Edge.
 
-In the next exercise we will look at a third topology of deploying a WAF policy that will be enforced within the AWS VPC
+In the next exercise we will look at a third topology of deploying a WAF policy that will be enforced within the Azure vNet
 on the AppMesh node (in the Customer Edge).
 
 .. raw:: html
@@ -135,7 +135,7 @@ Task 3. Creating HTTP Load Balancer on F5 Distributed Cloud Customer Edge
 
 In the previous lab exercises we were connecting to a F5 Distributed Cloud Load Balancer that was deployed in a Regional Edge.
 
-In the next lab exercise we will deploy a Load Balancer on the AppMesh node that was deployed in the AWS VPC (Customer Edge location).
+In the next lab exercise we will deploy a Load Balancer on the AppMesh node that was deployed in the Azure vNet (Customer Edge location).
 
 .. image:: _static/testdrive-volterra-waf-local-vip.png
 
@@ -152,7 +152,7 @@ Exercise 1: HTTP Load Balancer Configuration
    Variable                          Value
    ================================= =====
    Name                              local
-   Domains                           [NAMESPACE].aws.lab.f5demos.com
+   Domains                           [NAMESPACE].mcn.f5lab.net
    Select type of Load Balancer      HTTP
    Automatically Manage DNS Records  No/Unchecked 
    ================================= =====
@@ -173,9 +173,9 @@ Exercise 3: Configure Local VIP
 
 Previously we configured a VIP that was advertised on F5's Regional Edge (PoP) locations.
 We will modify this configuration to expose the service on the "Outside" interface of the AppMesh
-node that is deployed in AWS.  This will allow us to access the VIP via the Public IP Address (AWS Elastic IP)
+node that is deployed in Azure.  This will allow us to access the VIP via the Public IP Address (Azure Public IP)
 that is attached to that interface.  If we wished to only have the service available within the AWS VPC
-we could opt to use the "Inside" interface that does not have an AWS EIP attached.
+we could opt to use the "Inside" interface that does not have an Azure PIP attached.
 
 #. Under "Advanced Configuration" set "Where to Advertise the VIP" to "Custom"
    
@@ -184,7 +184,7 @@ we could opt to use the "Inside" interface that does not have an AWS EIP attache
 #. Click on "Configure" under "Custom"
 #. In "List of Sites to Adverstise", click on "Add Item"
 #. For "Site Network" click on "Outside Network" 
-#. For "Site Reference" select system/student-awsnet`
+#. For "Site Reference" select system/student-azurenet`
 
    .. image:: _static/lb-local-vip-advertise.png
       :width: 75%
@@ -210,8 +210,8 @@ Exercise 4: Configure WAF Policy
 #. Click "*Save and Exit* to create the HTTP Load Balancer.
 
 Once the HTTP Load Balancer has been deployed, you should now be able to go to the DNS name that you entered 
-previously in a web browser.  The FQDN we used in our example is http://stable-sheep.aws.lab.f5demos.com.  
-This is a wildcard DNS entry that points to the Public IP (AWS Elastic IP) that is attached to the AppMesh node.
+previously in a web browser.  The FQDN we used in our example is http://stable-sheep.mcn.f5lab.net.  
+This is a wildcard DNS entry that points to the Public IP (Azure Public IP) that is attached to the AppMesh node.
 
 Exercise 5: Verify Configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -225,7 +225,7 @@ The private demo app should look like the following:
 Exercise 6: Verify DNS
 ^^^^^^^^^^^^^^^^^^^^^^
 
-You can verify that you are connecting directly to AWS by comparing the DNS of the two hosts.
+You can verify that you are connecting directly to Azure by comparing the DNS of the two hosts.
 
 .. code-block:: 
 
@@ -246,23 +246,14 @@ You can verify that you are connecting directly to AWS by comparing the DNS of t
    Address: 52.4.72.136
 
 
-In this topology we are sending traffic to the AWS EIP that attached to the AppMesh node in the AWS VPC.
+In this topology we are sending traffic to the Azure PIP that attached to the AppMesh node in the Azure vNet.
 
-We then connect to the AWS resource via it's Private IP address.  
+We then connect to the Azure resource via it's Private IP address.  
 
 Try adding the following to the URL "?cat%20/etc/passwd".
 
 You should see a block page.  This is similar behavior to what we saw in the previous lab,
 but in this case the enforcement of the WAF policy is occurring on the AppMesh node
-that is deployed in the AWS Lab Environment and not in the F5 Distributed Cloud Regional Edge.
+that is deployed in the Azure Lab Environment and not in the F5 Distributed Cloud Regional Edge.
 
 In the next lab we will look at how to customize our WAF policy.
-
-Video Walkthrough 
-^^^^^^^^^^^^^^^^^
-
-Optional Video you can watch if you get stuck
-
-.. raw:: html
-   <iframe width="560" height="315" src="https://www.youtube.com/embed/s-BHH0Qayfc?start=400" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
