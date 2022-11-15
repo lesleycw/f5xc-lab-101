@@ -225,21 +225,16 @@ You can verify that you are connecting directly to Azure by comparing the DNS of
 
 .. code-block:: 
 
-   dig +short [YOUR NAMESPACE].mcn.f5lab.net
-   52.4.72.136
-   $ dig -x 52.4.72.136 +short
-   ec2-52-4-72-136.compute-1.amazonaws.com.
+   $dig +short [YOUR NAMESPACE].mcn.f5lab.net
+   20.51.104.213
 
 .. code-block:: 
 
    nslookup [YOUR NAMESPACE].mcn.f5lab.net
    
-   Server:		2a01:cb04:765:e00:a6ce:daff:fe11:96ea
-   Address:	2a01:cb04:765:e00:a6ce:daff:fe11:96ea#53
-
    Non-authoritative answer:
    Name:	[YOUR NAMESPACE].mcn.f5lab.net
-   Address: 52.4.72.136
+   Address: 20.51.104.213
 
 
 In this topology we are sending traffic to the Azure PIP that attached to the AppMesh node in the Azure VNET.
